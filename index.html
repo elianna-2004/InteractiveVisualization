@@ -8,8 +8,75 @@
 </head>
 <body>
     <div class="container"> <!-- Centers content and sets max width -->
-        <h1>Assignment 1: Interactive Visualization</h1>
+        <h1>Chicago 2026 Crime Arrests by Location</h1>
+        <div id="tooltip" style="display:none"></div>
+
+        <div id="controls">
+            Crime Type: <select id="yVariable" class="variable"></select>
+        </div>
+
         <div id="vis"></div> <!--  Will hold our visualization (SVG) -->
+    </div>
+    <div>
+        <h2>Brief Write-Up of Visualization:</h2>
+        <br>
+        Team Members: Elianna, Eric<br><br>
+        The visualization above displays the number of arrests made for a specific crime
+        type at a described location in Chicago during 2026. This visualization offers insight regarding the 
+        correlation between certain crime types and locations in Chicago they are most often associated with. For example, 
+        a majority of arrests made regarding Theft occured in Small Retail Stores or a majority of arrests 
+        made regarding Narcotics occured in Street settings.
+        <br><br>
+        Our dataset includes data exported from the Chicago Crime Data Portal, specifically the year 2026. 
+        We decided to filter the data due to the amount of entries, to make it more ingestable/downloadable locally.
+        After some brainstorming on what attributes we could use to create a visualization we ended up filtering the data with
+        the following criteria:
+        <br><br>
+        1. Arrest is true 
+        <br>
+        2. Year is 2026
+        <br>
+        3. Primary Type is one of Battery, Burglary, Criminal Damage, Theft, Narcotics, Criminal Sexual Assualt, Arson
+        <br>
+        4. Location Description is one of Apartment, Residence, Street, Sidewalk, Small Retail Store, Restaurant
+        <br><br>
+        This truncated the original almost 3 million row dataset into a subset of a little over 10,000 rows for us to process better.
+        <br><br>
+        The rationale for our design decisions mainly included finding a way to distinguish between
+        crime types and creating the option to interact with mutiple crime types. For this, we used the following visual encodings and interactive 
+        components:
+        <br><br>
+        <em>Visual Encodings:</em><br>
+        - X axis representing the crime location attribute to identify where the arrests occured<br>
+        - Y axis & Bar Height showcasing the numeric number of arrests to represent the frequency of the selected crime at each location<br>
+        - Color for each crime type to allow for distinct visuals of each crime type, with all bars sharing the selected crime's color when filtered<br>
+        - Text Labels & Tool Tips give additional information about locations, arrest counts, and FBI Code for a specific crime type<br>
+        - Bar Length & Height to demonstrate arrest count since rectangles make it easier to compare arrest totals across locations<br>
+        - Position & Length encodings allow for users to compare arrest counts across locations and color encoding provides a secondary visual for the selected crime type<br><br>
+
+
+        <em>Interactive Components:</em><br>
+        - Crime Type Dropdown allows user to select crime type filter (battery, arson, theft, etc..) and update the bars and axes<br>
+        - Dynamic Y Axis updates automatically and adjusts the scale to the arrest counts for a selected crime<br>
+        - Hover Tooltips allows user to hover over a bar and display details such as arrest count and FBI code for a given crime<br>
+        - Bar Chart compares the bar heights and helps users identify locations with higher or lower arrest counts
+        <br><br>
+        We considered alternative approaches like demonstrating crime types using circles or icons, with the arrest counts being denoted by their sizing (larger = higher arrest count). While
+        this might have worked, we thought the approach we decided on was more visually straightforward and conveyed the information more accessibly to the user. Also, in cases
+        where the counts were relatively close, the bar charts are easier to compare in this scenario than icons slightly bigger than one another.
+        <br><br>
+        For our development process, we tried to split everything equally especially when it came to brainstorming ideas and diagramming
+        ways we could create a visualization based off of the dataset. One member focused more on implementation while the other focused mainly 
+        on deploying the application into a webpage and getting us started with basic code (i.e., files, margin definitions, svg creation, css).
+        In terms of time spent developing the application, in total we spend roughly 10-12 hours working on this assignment. Most of those hours (about half) were spent planning,
+        filtering, and cleaning up the dataset into the subset we wanted to use and the other half was spent implementing, debugging, and deploying the assignment. 
+        <br><br>
+        In terms of AI use, ChatGPT was used for finding the d3.rolling method to create a record list from our data set with the arrest count (for a specific crime type) at each
+        location to make displaying the measurements easier.
+        <br><br>
+        <h3>Utilized Data:</h3>
+        <a href="https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2/about_data"> Chicago Crimes Data Portal 2001 - Present </a>
+
     </div>
     
     <!-- Load D3.js -->
